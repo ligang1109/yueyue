@@ -5,6 +5,7 @@ class Autoload
 {/*{{{*/
     private static $_key      = '';
     private static $_src_root = '';
+    private static $_special_paths = array();
 
     public static function init($key, $src_root)
     {/*{{{*/
@@ -12,6 +13,10 @@ class Autoload
         self::$_src_root = $src_root;
 
         spl_autoload_register(array(__CLASS__, 'autoload'));
+    }/*}}}*/
+    public static function setSpecialPath($key, $special_src_root)
+    {/*{{{*/
+        self::$_special_paths[$key] = $special_src_root;
     }/*}}}*/
 	public static function autoload($cls_name)
 	{/*{{{*/
@@ -23,7 +28,9 @@ class Autoload
         }
 
         $cls_name = array_pop($dir_data);
-        $cls_path = self::$_src_root;
+        $cls_key  = array_shift($dir_data);
+        $cls_path = isset(self::$_special_paths[$cls_key]) ? self::$_special_paths[$cls_key] : self::$_src_root;
+        $cls_path.= strtolower($cls_key).'/';
         foreach($dir_data as $item)
         {
             $cls_path.= strtolower($item).'/';
@@ -40,6 +47,3 @@ class Autoload
         include($cls_path);
 	}/*}}}*/
 }/*}}}*/
-
-
-\YueYue\Core\Autoload::init('YueYue', __DIR__.'/../');

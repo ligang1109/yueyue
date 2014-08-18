@@ -1,0 +1,29 @@
+yueyue=$YUEYUE_HOME in=project/in.vim {
+ project=project {
+  in.vim
+  srcindex_cscope.sh
+  srcindex_ctags.sh
+ }
+ src=src {
+  component=component {
+   loader.php
+   obj_container.php
+   request.php
+   params_conf.php
+   params_check.php
+   exception.php
+  }
+  controller=controller {
+   base.php
+   web.php
+  }
+  core=core {
+   autoload.php
+   yueyue.php
+  }
+  knowledge=knowledge {
+   param.php
+   errno.php
+  }
+ }
+}
