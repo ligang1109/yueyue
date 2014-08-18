@@ -19,11 +19,18 @@ yueyue=$YUEYUE_HOME in=project/in.vim {
   }
   core=core {
    autoload.php
+   boot.php
    yueyue.php
   }
   knowledge=knowledge {
+   tpl.php
    param.php
    errno.php
+  }
+  view=view {
+   base.php
+   php.php
+   smarty.php
   }
  }
 }

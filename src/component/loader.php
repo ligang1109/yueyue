@@ -19,13 +19,34 @@ class Loader
 		return $obj;
 	}/*}}}*/
 
+    public static function loadYueYue()
+    {/*{{{*/
+        return self::loadSingleton('\YueYue\Core\Yueyue');
+    }/*}}}*/
     public static function loadRequest()
     {/*{{{*/
         return self::loadSingleton('\YueYue\Component\Request');
     }/*}}}*/
-    public static function loadWebController($controller_name, $controller_namespace)
+    public static function loadWebController($controller_namespace, $controller_name)
     {/*{{{*/
         $cls_name = $controller_namespace.'\\'.ucfirst($controller_name);
         return self::loadSingleton($cls_name, $controller_name);
+    }/*}}}*/
+    public static function loadView($tpl_engine)
+    {/*{{{*/
+        $cls_name = '';
+        switch($tpl_engine)
+        {
+        case \YueYue\Knowledge\Tpl::ENGINE_PHP:
+            $cls_name = '\YueYue\View\Php';
+            break;
+        case \YueYue\Knowledge\Tpl::ENGINE_SMARTY:
+            $cls_name = '\YueYue\View\Smarty';
+            break;
+        default:
+            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_SYS_INVALID_TPL_ENGINE);
+        }
+
+        return self::loadSingleton($cls_name);
     }/*}}}*/
 }/*}}}*/
