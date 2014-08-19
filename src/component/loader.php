@@ -27,7 +27,7 @@ class Loader
     {/*{{{*/
         return self::loadSingleton('\YueYue\Component\Request');
     }/*}}}*/
-    public static function loadWebController($controller_namespace, $controller_name)
+    public static function loadController($controller_namespace, $controller_name)
     {/*{{{*/
         $cls_name = $controller_namespace.'\\'.ucfirst($controller_name);
         return self::loadSingleton($cls_name, $controller_name);

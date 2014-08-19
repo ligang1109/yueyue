@@ -6,16 +6,19 @@ yueyue=$YUEYUE_HOME in=project/in.vim {
  }
  src=src {
   component=component {
+   exception.php
    loader.php
    obj_container.php
-   request.php
-   params_conf.php
    params_check.php
-   exception.php
+   params_conf.php
+   request.php
+   response.php
   }
   controller=controller {
    base.php
    web.php
+   front.php
+   api.php
   }
   core=core {
    autoload.php

@@ -34,11 +34,17 @@ class Yueyue
         return $this->_subsystem;
     }/*}}}*/
 
-    public function runWeb()
+    public function runFront()
     {/*{{{*/
-        $controller = \YueYue\Component\Loader::loadWebController($this->_controller_namespace, $this->_controller_name);
+        $controller = \YueYue\Component\Loader::loadController($this->_controller_namespace, $this->_controller_name);
 
         $controller->initView($this->_tpl_engine, $this->_view_root);
+        $controller->dispatch($this->_action_name);
+    }/*}}}*/
+    public function runApi()
+    {/*{{{*/
+        $controller = \YueYue\Component\Loader::loadController($this->_controller_namespace, $this->_controller_name);
+
         $controller->dispatch($this->_action_name);
     }/*}}}*/
 }/*}}}*/
