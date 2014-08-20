@@ -5,14 +5,15 @@ class Errno
 {/*{{{*/
     const SUCCESS = 0;
 
-    const E_VIEW_INVALID_TPL_ENGINE = 101;
+    const E_SYS_CLS_NOT_EXISTS = 11;
 
-    const E_RESPONSE_INVALID_FMT_VALUE = 201;
+    const E_COMPONENTS_CONTROLLER_NOT_EXISTS      = 101;
+    const E_COMPONENTS_ACTION_NOT_EXISTS          = 102;
+    const E_COMPONENTS_VIEW_INVALID_TPL_ENGINE    = 103;
+    const E_COMPONENTS_RESPONSE_INVALID_FMT_VALUE = 104;
 
     private static $_error_msg_def = array
     (/*{{{*/
-        self::E_VIEW_INVALID_TPL_ENGINE    => 'invalid tpl engine',
-        self::E_RESPONSE_INVALID_FMT_VALUE => 'invalid fmt value',
     );/*}}}*/
 
     public static function getErrorMsg($errno)

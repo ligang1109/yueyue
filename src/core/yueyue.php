@@ -36,15 +36,28 @@ class Yueyue
 
     public function runFront()
     {/*{{{*/
-        $controller = \YueYue\Component\Loader::loadController($this->_controller_namespace, $this->_controller_name);
+        $controller = $this->_loadController();
 
         $controller->initView($this->_tpl_engine, $this->_view_root);
         $controller->dispatch($this->_action_name);
     }/*}}}*/
     public function runApi()
     {/*{{{*/
-        $controller = \YueYue\Component\Loader::loadController($this->_controller_namespace, $this->_controller_name);
+        $controller = $this->_loadController();
 
         $controller->dispatch($this->_action_name);
+    }/*}}}*/
+
+
+    private function _loadController()
+    {/*{{{*/
+        try
+        {
+            return \YueYue\Component\Loader::loadController($this->_controller_namespace, $this->_controller_name);
+        }
+        catch(\Exception $e)
+        {
+            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_COMPONENTS_CONTROLLER_NOT_EXISTS, "controller $this->_controller_name not exists");
+        }
     }/*}}}*/
 }/*}}}*/

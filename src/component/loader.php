@@ -48,7 +48,7 @@ class Loader
             $cls_name = '\YueYue\View\Smarty';
             break;
         default:
-            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_VIEW_INVALID_TPL_ENGINE);
+            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_COMPONENTS_VIEW_INVALID_TPL_ENGINE);
         }
 
         return self::loadSingleton($cls_name);

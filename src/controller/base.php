@@ -17,6 +17,11 @@ abstract class Base
 		$this->_action_name = $action_name;
 
 		$action_func = $action_name.'Action';
+        if(!method_exists($this, $action_func))
+        {
+            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_COMPONENTS_ACTION_NOT_EXISTS, "action $this->_action_name not exists");
+        }
+
         $this->_preAction();
 		$this->$action_func();
         $this->_postAction();

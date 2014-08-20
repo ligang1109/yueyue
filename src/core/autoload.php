@@ -18,9 +18,9 @@ class Autoload
     {/*{{{*/
         self::$_special_paths[$key] = $special_src_root;
     }/*}}}*/
-	public static function autoload($cls_name)
+	public static function autoload($search_cls_name)
 	{/*{{{*/
-        $cls_name = trim($cls_name, '\\');
+        $cls_name = trim($search_cls_name, '\\');
         $dir_data = explode('\\', $cls_name);
         if(self::$_key != array_shift($dir_data))
         {
@@ -44,6 +44,11 @@ class Autoload
         }
 
         $cls_path.= implode('_', $name_data).'.php';
+        if(!file_exists($cls_path))
+        {
+            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_SYS_CLS_NOT_EXISTS, "cls file $cls_path not exists");
+        }
+
         include($cls_path);
 	}/*}}}*/
 }/*}}}*/
