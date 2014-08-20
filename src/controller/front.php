@@ -27,6 +27,9 @@ abstract class Front extends \YueYue\Controller\Web
 	{/*{{{*/
         parent::_postAction();
 
+        $this->_assign('controller_name', $this->_controller_name);
+        $this->_assign('action_name', $this->_controller_name);
+
         if(!is_null($this->_view))
         {
             $tpl_name = $this->_tpl_name ? $this->_tpl_name : "$this->_controller_name/$this->_action_name";

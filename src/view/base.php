@@ -14,8 +14,16 @@ abstract class Base
 	{/*{{{*/
 		$this->_view_root = $view_root;
 	}/*}}}*/
-	public function render($tpl_name)
+	public function render($tpl_name, $data=array())
 	{/*{{{*/
+        if(!empty($data))
+        {
+            foreach($data as $key => $value)
+            {
+                $this->assign($key, $value);
+            }
+        }
+
         $tpl_path = $this->_getTplPath($tpl_name);
         if(!file_exists($tpl_path))
         {
