@@ -26,9 +26,9 @@ yueyue=$YUEYUE_HOME in=project/in.vim {
    yueyue.php
   }
   knowledge=knowledge {
-   tpl.php
-   param.php
    errno.php
+   param.php
+   tpl.php
   }
   view=view {
    base.php

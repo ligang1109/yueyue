@@ -27,6 +27,10 @@ class Loader
     {/*{{{*/
         return self::loadSingleton('\YueYue\Component\Request');
     }/*}}}*/
+    public static function loadResponse()
+    {/*{{{*/
+        return self::loadSingleton('\YueYue\Component\Response');
+    }/*}}}*/
     public static function loadController($controller_namespace, $controller_name)
     {/*{{{*/
         $cls_name = $controller_namespace.'\\'.ucfirst($controller_name);
@@ -44,7 +48,7 @@ class Loader
             $cls_name = '\YueYue\View\Smarty';
             break;
         default:
-            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_SYS_INVALID_TPL_ENGINE);
+            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_VIEW_INVALID_TPL_ENGINE);
         }
 
         return self::loadSingleton($cls_name);

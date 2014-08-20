@@ -5,6 +5,7 @@ abstract class Api extends \YueYue\Controller\Web
 {/*{{{*/
     protected $_response = null;
     protected $_result   = array();
+    protected $_fmt      = '';
 
 	public function __construct($controller_name)
 	{/*{{{*/
@@ -17,6 +18,6 @@ abstract class Api extends \YueYue\Controller\Web
 	{/*{{{*/
         parent::_postAction();
 
-        $this->_response->output
+        $this->_response->output($this->_result, $this->_fmt);
 	}/*}}}*/
 }/*}}}*/
