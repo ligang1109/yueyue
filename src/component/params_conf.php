@@ -27,7 +27,7 @@ class ParamsConf
     {/*{{{*/
         $this->_params_conf[$name][self::KEY_CHECK] = $callback;
     }/*}}}*/
-    public function setParamFilterEmpty($name, $filter=true)
+    public function setParamFilterNull($name, $filter=true)
     {/*{{{*/
         $this->_params_conf[$name][self::KEY_FILTER_EMPTY] = $filter;
     }/*}}}*/
@@ -58,7 +58,7 @@ class ParamsConf
     {/*{{{*/
         return isset($this->_params_conf[$name][self::KEY_CHECK]) ? $this->_params_conf[$name][self::KEY_CHECK] : '';
     }/*}}}*/
-    public function getParamFilterEmpty($name)
+    public function getParamFilterNull($name)
     {/*{{{*/
         return isset($this->_params_conf[$name][self::KEY_FILTER_EMPTY]) ? $this->_params_conf[$name][self::KEY_FILTER_EMPTY] : false;
     }/*}}}*/

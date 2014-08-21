@@ -8,6 +8,7 @@ yueyue=$YUEYUE_HOME in=project/in.vim {
   component=component {
    exception.php
    loader.php
+   logger.php
    obj_container.php
    params_check.php
    params_conf.php
@@ -25,10 +26,25 @@ yueyue=$YUEYUE_HOME in=project/in.vim {
    boot.php
    yueyue.php
   }
+  dao=dao {
+   sql.php
+  }
+  entity=entity {
+   base.php
+  }
   knowledge=knowledge {
    errno.php
    param.php
+   pdo.php
+   sql.php
    tpl.php
+  }
+  svc=svc {
+   base.php
+   store.php
+  }
+  tool=tool {
+   sql_executor.php
   }
   view=view {
    base.php

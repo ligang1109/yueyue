@@ -12,6 +12,8 @@ class Errno
     const E_COMPONENTS_VIEW_INVALID_TPL_ENGINE    = 103;
     const E_COMPONENTS_RESPONSE_INVALID_FMT_VALUE = 104;
 
+    const E_SVC_SERVE_NOT_EXISTS = 201;
+
     private static $_error_msg_def = array
     (/*{{{*/
     );/*}}}*/

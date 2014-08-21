@@ -9,10 +9,15 @@ class Yueyue
     private $_action_name          = '';
     private $_tpl_engine           = '';
     private $_view_root            = '';
+    private $_log_root             = '';
 
     public function setSubsystem($subsystem)
     {/*{{{*/
         $this->_subsystem = $subsystem;
+    }/*}}}*/
+    public function setLogRoot($log_root)
+    {/*{{{*/
+        $this->_log_root = $log_root;
     }/*}}}*/
     public function setView($tpl_engine, $view_root)
     {/*{{{*/
@@ -36,19 +41,25 @@ class Yueyue
 
     public function runFront()
     {/*{{{*/
-        $controller = $this->_loadController();
+        $this->_initLogger();
 
+        $controller = $this->_loadController();
         $controller->initView($this->_tpl_engine, $this->_view_root);
         $controller->dispatch($this->_action_name);
     }/*}}}*/
     public function runApi()
     {/*{{{*/
-        $controller = $this->_loadController();
+        $this->_initLogger();
 
+        $controller = $this->_loadController();
         $controller->dispatch($this->_action_name);
     }/*}}}*/
 
 
+    private function _initLogger()
+    {/*{{{*/
+        \YueYue\Component\Logger::init($this->_log_root);
+    }/*}}}*/
     private function _loadController()
     {/*{{{*/
         try

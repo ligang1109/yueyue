@@ -29,15 +29,18 @@ class Request
     }/*}}}*/
     public function getStrParam($key='', $default='')
     {/*{{{*/
-        return $this->_fmtStrValue($this->getParam($key, $default));
+        $value = $this->getParam($key, $default);
+        return is_null($value) ? null : $this->_fmtStrValue($value);
     }/*}}}*/
     public function getNumParam($key='', $default=0)
     {/*{{{*/
-        return $this->_fmtNumValue($this->getParam($key, $default));
+        $value = $this->getParam($key, $default);
+        return is_null($value) ? null : $this->_fmtNumValue($value);
     }/*}}}*/
     public function getArrParam($key='', $default=array())
     {/*{{{*/
-        return $this->_fmtArrValue($this->getParam($key, $default));
+        $value = $this->getParam($key, $default);
+        return is_null($value) ? null : $this->_fmtArrValue($value);
     }/*}}}*/
 
     public function parseRequestParams($params_conf)
@@ -45,7 +48,7 @@ class Request
         foreach($params_conf->getParamNames() as $name)
         {
             $value = $this->_parseParamValue($name, $params_conf);
-            if(empty($value) && $params_conf->getParamFilterEmpty($name))
+            if(is_null($value) && $params_conf->getParamFilterNull($name))
             {
                 continue;
             }
