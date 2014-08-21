@@ -118,6 +118,10 @@ abstract class Sql
         return $this->_executor->rollback();
     }/*}}}*/
 
+    protected function _makeSqlLimit($bgn, $cnt)
+    {/*{{{*/
+        return $cnt ? "$bgn, $cnt" : "";
+    }/*}}}*/
     protected function _simpleQuery($query_key, $params, $fields=array(), $order_by='', $limit='', $cond_logic=\YueYue\Knowledge\Sql::QUERY_COND_LOGIC_AND)
     {/*{{{*/
         if(!array_key_exists($query_key, $this->_query_conf))
