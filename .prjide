@@ -31,6 +31,7 @@ yueyue=$YUEYUE_HOME in=project/in.vim {
   }
   entity=entity {
    base.php
+   sql.php
   }
   knowledge=knowledge {
    errno.php
@@ -40,11 +41,13 @@ yueyue=$YUEYUE_HOME in=project/in.vim {
    tpl.php
   }
   svc=svc {
-   base.php
    store.php
   }
   tool=tool {
+   curl.php
+   postman.php
    sql_executor.php
+   toolbox.php
   }
   view=view {
    base.php

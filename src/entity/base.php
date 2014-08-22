@@ -1,92 +1,54 @@
 <?php
-abstract class Hao360cnMisc_BaseEntity
+namespace YueYue\Entity;
+
+abstract class Base
 {/*{{{*/
-    private $_attr = array();
+    abstract protected function _getAttrs();
 
-    abstract protected function _getPrivateCols();
+    protected $_attrs = array();
 
-    public function __construct($attr=array())
+    public function __construct()
     {/*{{{*/
-        $cols = array_merge($this->_getPublicCols(), $this->_getPrivateCols());
-        $cols = $this->_fillCols($cols, $attr);
-
-        $this->_attr = $cols;
+        $this->_attrs = $this->_getAttrs();
     }/*}}}*/
     public function __get($key)
     {/*{{{*/
         if($this->have($key))
         {
-            return $this->_attr[$key];
+            return $this->_attrs[$key];
         }
         return null;
     }/*}}}*/
     public function __set($key, $value)
     {/*{{{*/
-        $this->_attr[$key] = $value;
+        if($this->have($key))
+        {
+            $this->_attrs[$key] = $value;
+        }
     }/*}}}*/
 
     public function have($key)
     {/*{{{*/
-        return array_key_exists($key, $this->_attr) ? true : false;
+        return isset($this->_attrs[$key]) ? true : false;
     }/*}}}*/
     public function toAry()
     {/*{{{*/
-        return $this->_attr;
+        return $this->_attrs;
     }/*}}}*/
 
-    public function prepareStore()
+    public function setAttrs($item=array())
     {/*{{{*/
-        $this->_fillPublicCols();
-    }/*}}}*/
-    public function getUpdateFields($params)
-    {/*{{{*/
-        $result = array();
-        foreach($params as $key => $value)
+        foreach($this->_attrs as $key => $value)
         {
-            if($this->have($key))
+            if(isset($item[$key]))
             {
-                if($this->$key != $value)
-                {
-                    $result[$key] = $value;
-                }
+                $this->_attrs[$key] = $item[$key];
             }
         }
-        if(!empty($result))
-        {
-            $result['edit_time'] = $this->_getNow();
-        }
-        return $result;
     }/*}}}*/
 
-    protected function _fillCols($cols, $attr)
+    protected function _bindAttrs($attrs=array())
     {/*{{{*/
-        foreach($cols as $key => $value)
-        {
-            if(isset($attr[$key]))
-            {
-                $cols[$key] = $attr[$key];
-            }
-        }
-        return $cols;
-    }/*}}}*/
-    protected function _fillPublicCols()
-    {/*{{{*/
-        $now = $this->_getNow();
-
-        $this->add_time  = $now;
-        $this->edit_time = $now;
-    }/*}}}*/
-
-    protected function _getPublicCols()
-    {/*{{{*/
-        return array(
-            'id'        => 0,
-            'add_time'  => '',
-            'edit_time' => '',
-        );
-    }/*}}}*/
-    protected function _getNow()
-    {/*{{{*/
-        return date('Y-m-d H:i:s');
+        $this->_attrs = array_merge($this->_attrs, $attrs);
     }/*}}}*/
 }/*}}}*/

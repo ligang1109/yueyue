@@ -1,7 +1,7 @@
 <?php
 namespace YueYue\Svc;
 
-abstract class Store extends \YueYue\Svc\Base
+abstract class Store
 {/*{{{*/
 	abstract protected function _getEntityName();
 
@@ -9,8 +9,6 @@ abstract class Store extends \YueYue\Svc\Base
 
     public function __construct()
     {/*{{{*/
-        parent::__construct();
-
 		$this->_entity_name = $this->_getEntityName();
     }/*}}}*/
 }/*}}}*/

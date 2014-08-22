@@ -3,24 +3,19 @@ namespace YueYue\Dao;
 
 abstract class Sql
 {/*{{{*/
-    abstract protected function _getTableName();
+    abstract public function setTableName($hash_value=null);
+
     abstract protected function _getQueryConf();
 
-    protected $_hash_value = null;
-    protected $_table_name = '';
-    protected $_executor   = null;
-    protected $_query_conf = array();
+    protected $_entity_name = '';
+    protected $_query_conf  = array();
+    protected $_executor    = null;
+    protected $_table_name  = '';
 
-    public function __construct($hash_value=null)
+    public function __construct($entity_name)
     {/*{{{*/
-        $this->_hash_value = $hash_value;
-        $this->_table_name = $this->_getTableName();
-        $this->_query_conf = $this->_getQueryConf();
-    }/*}}}*/
-    public function setHashValue($hash_value)
-    {/*{{{*/
-        $this->_hash_value = $hash_value;
-        $this->_table_name = $this->_getTableName();
+        $this->_entity_name = $entity_name;
+        $this->_query_conf  = $this->_getQueryConf();
     }/*}}}*/
     public function setExecutor($executor)
     {/*{{{*/
