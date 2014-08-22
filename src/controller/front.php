@@ -36,7 +36,7 @@ abstract class Front extends \YueYue\Controller\Web
 
         if(!is_null($this->_view))
         {
-            $tpl_name = $this->_tpl_name ? $this->_tpl_name : "$this->_controller_name/$this->_action_name";
+            $tpl_name = $this->_tpl_name ? $this->_tpl_name : $this->_controller_name.'/'.strtolower($this->_action_name);
             $this->_view->render($tpl_name);
         }
 	}/*}}}*/
