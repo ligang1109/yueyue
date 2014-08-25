@@ -64,6 +64,11 @@ class Response
         $this->_setFmtConf(self::FMT_JSONP, $value);
     }/*}}}*/
 
+    public function getFmtValueDump()
+    {/*{{{*/
+        return $this->_fmt_conf_key_value[self::FMT_DUMP];
+    }/*}}}*/
+
 	public function secureFilter($str, $needHtmlspecialchars=true)
 	{/*{{{*/
 		return $needHtmlspecialchars ? htmlspecialchars($str) : strip_tags($str);
@@ -77,7 +82,6 @@ class Response
         case self::FMT_DUMP:
             echo '<pre>';
             var_dump($data);
-            echo '</pre>';
             break;
         case self::FMT_SERIALIZE:
             echo serialize($data);

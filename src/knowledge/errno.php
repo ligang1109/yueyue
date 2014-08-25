@@ -14,6 +14,11 @@ class Errno
 
     const E_SVC_SERVE_NOT_EXISTS = 201;
 
+    const E_TASK_INVALID_ARGS      = 301;
+    const E_TASK_INVALID_CMD       = 302;
+    const E_TASK_INVALID_TASK_NAME = 303;
+    const E_TASK_INVALID_TASK_CLS  = 304;
+
     private static $_error_msg_def = array
     (/*{{{*/
     );/*}}}*/
