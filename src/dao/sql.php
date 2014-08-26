@@ -242,6 +242,10 @@ abstract class Sql
             $result['cond']  = $cond_value['cond'];
             $result['value'] = $cond_value['value'];
             break;
+        case \YueYue\Knowledge\Sql::QUERY_COND_METHOD_NOT_EQUAL:
+            $result['cond']  = "$col != ?";
+            $result['value'] = $value;
+            break;
         default:
             $result = false;
         }
