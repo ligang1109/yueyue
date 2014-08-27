@@ -69,10 +69,6 @@ class Response
         return $this->_fmt_conf_key_value[self::FMT_DUMP];
     }/*}}}*/
 
-	public function secureFilter($str, $needHtmlspecialchars=true)
-	{/*{{{*/
-		return $needHtmlspecialchars ? htmlspecialchars($str) : strip_tags($str);
-	}/*}}}*/
     public function output($data=array(), $fmt_value='')
     {/*{{{*/
         $fmt_key = $this->_getFmtKey($fmt_value);
@@ -152,6 +148,6 @@ class Response
             $callback = self::DEF_JSONP_CALLBACK_VALUE;
         }
 
-        return $this->secureFilter($callback);
+        return \YueYue\Tool\Toolbox::secureFilter($callback);
     }/*}}}*/
 }/*}}}*/

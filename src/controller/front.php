@@ -40,8 +40,8 @@ abstract class Front extends \YueYue\Controller\Web
             $this->_view->render($tpl_name);
         }
 	}/*}}}*/
-    protected function _assign($key, $value)
+    protected function _assign($key, $value, $secure_filter=true)
     {/*{{{*/
-        $this->_view->assign($key, $value);
+        $this->_view->assign($key, $value, $secure_filter);
     }/*}}}*/
 }/*}}}*/

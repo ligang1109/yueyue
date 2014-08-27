@@ -3,7 +3,7 @@ namespace YueYue\View;
 
 abstract class Base
 {/*{{{*/
-	abstract public function assign($key, $value);
+	abstract public function assign($key, $value, $secure_filter=true);
 
     abstract protected function _getTplPath($tpl_name);
 	abstract protected function _parseTpl($tpl_path);

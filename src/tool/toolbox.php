@@ -74,4 +74,20 @@ class Toolbox
     {/*{{{*/
         return date('Y-m-d H:i:s');
     }/*}}}*/
+	public static function secureFilter($data, $needHtmlspecialchars=true)
+	{/*{{{*/
+        if(is_array($data))
+        {
+            foreach($data as $key => $value)
+            {
+                $data[$key] = self::secureFilter($value, $needHtmlspecialchars);
+            }
+        }
+        else
+        {
+            $data = $needHtmlspecialchars ? htmlspecialchars($data) : strip_tags($data);
+        }
+
+        return $data;
+	}/*}}}*/
 }/*}}}*/
