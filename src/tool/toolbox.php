@@ -65,6 +65,10 @@ class Toolbox
         $host_data = posix_uname();
         return $host_data['nodename'];
     }/*}}}*/
+    public static function getUa()
+    {/*{{{*/
+        return (isset($_SERVER['HTTP_USER_AGENT']) && $_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+    }/*}}}*/
     public static function jumpTo($url)
     {/*{{{*/
         header('location:'.$url);

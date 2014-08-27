@@ -44,4 +44,18 @@ abstract class Front extends \YueYue\Controller\Web
     {/*{{{*/
         $this->_view->assign($key, $value, $secure_filter);
     }/*}}}*/
+
+    protected function _getCurUrl()
+    {/*{{{*/
+        return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    }/*}}}*/
+    protected function _getBackUrl()
+    {/*{{{*/
+        return array_key_exists('HTTP_REFERER', $_SERVER) ? $_SERVER['HTTP_REFERER'] : '';
+    }/*}}}*/
+    protected function _goBack()
+    {/*{{{*/
+        header('location:'.$this->_getBackUrl());
+        exit;
+    }/*}}}*/
 }/*}}}*/
