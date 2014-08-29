@@ -11,4 +11,7 @@ class Sql
 
     const QUERY_COND_LOGIC_AND = 'and';
     const QUERY_COND_LOGIC_OR  = 'or';
+
+    const QUERY_COND_IN_COND     = 'in';
+    const QUERY_COND_NOT_IN_COND = 'not in';
 }/*}}}*/

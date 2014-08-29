@@ -238,7 +238,7 @@ abstract class Sql
             $result['value'] = $cond_value['value'];
             break;
         case \YueYue\Knowledge\Sql::QUERY_COND_METHOD_NOT_IN:
-            $cond_value      = $this->_fmtSqlCondInCondValue($col, $value, 'not in');
+            $cond_value      = $this->_fmtSqlCondInCondValue($col, $value, \YueYue\Knowledge\Sql::QUERY_COND_NOT_IN_COND);
             $result['cond']  = $cond_value['cond'];
             $result['value'] = $cond_value['value'];
             break;
@@ -277,7 +277,7 @@ abstract class Sql
         }
         return $result;
     }/*}}}*/
-    private function _fmtSqlCondInCondValue($col, $value, $cond='in')
+    private function _fmtSqlCondInCondValue($col, $value, $cond=\YueYue\Knowledge\Sql::QUERY_COND_IN_COND)
     {/*{{{*/
         $sql = "$col $cond (";
         $tmp = array();
