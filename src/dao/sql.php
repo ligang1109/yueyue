@@ -89,7 +89,26 @@ abstract class Sql
         $sql.= ")";
 
         $data = $this->_executor->querys($sql, $ids);
-        return empty($data) ? array() : $data;
+        if(empty($data))
+        {
+            return array();
+        }
+
+        $id_data = array();
+        foreach($data as $item)
+        {
+            $id_data[$item['id']] = $item;
+        }
+        $result = array();
+        foreach($ids as $id)
+        {
+            if(isset($id_data[$id]))
+            {
+                $result[] = $id_data[$id];
+            }
+        }
+
+        return $result;
     }/*}}}*/
 
     public function getMaxId()
