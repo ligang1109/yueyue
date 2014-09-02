@@ -43,6 +43,10 @@ yueyue=$YUEYUE_HOME in=project/in.vim {
   svc=svc {
    store.php
   }
+  task=task {
+   func.php
+   runner.php
+  }
   tool=tool {
    curl.php
    postman.php

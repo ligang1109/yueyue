@@ -36,7 +36,7 @@ class Autoload
             $cls_path.= strtolower($item).'/';
         }
 
-        preg_match_all('/([A-Z][a-z0-9]+)/', $cls_name, $matches);
+        preg_match_all('/([A-Z][a-z0-9_]+)/', $cls_name, $matches);
         $name_data = array();
         foreach($matches[1] as $item)
         {

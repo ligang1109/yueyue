@@ -65,6 +65,10 @@ class Toolbox
         $host_data = posix_uname();
         return $host_data['nodename'];
     }/*}}}*/
+    public static function getUa()
+    {/*{{{*/
+        return (isset($_SERVER['HTTP_USER_AGENT']) && $_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+    }/*}}}*/
     public static function jumpTo($url)
     {/*{{{*/
         header('location:'.$url);
@@ -74,4 +78,20 @@ class Toolbox
     {/*{{{*/
         return date('Y-m-d H:i:s');
     }/*}}}*/
+	public static function secureFilter($data, $needHtmlspecialchars=true)
+	{/*{{{*/
+        if(is_array($data))
+        {
+            foreach($data as $key => $value)
+            {
+                $data[$key] = self::secureFilter($value, $needHtmlspecialchars);
+            }
+        }
+        else
+        {
+            $data = $needHtmlspecialchars ? htmlspecialchars($data) : strip_tags($data);
+        }
+
+        return $data;
+	}/*}}}*/
 }/*}}}*/

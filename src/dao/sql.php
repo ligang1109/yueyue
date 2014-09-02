@@ -89,7 +89,26 @@ abstract class Sql
         $sql.= ")";
 
         $data = $this->_executor->querys($sql, $ids);
-        return empty($data) ? array() : $data;
+        if(empty($data))
+        {
+            return array();
+        }
+
+        $id_data = array();
+        foreach($data as $item)
+        {
+            $id_data[$item['id']] = $item;
+        }
+        $result = array();
+        foreach($ids as $id)
+        {
+            if(isset($id_data[$id]))
+            {
+                $result[] = $id_data[$id];
+            }
+        }
+
+        return $result;
     }/*}}}*/
 
     public function getMaxId()
@@ -238,9 +257,13 @@ abstract class Sql
             $result['value'] = $cond_value['value'];
             break;
         case \YueYue\Knowledge\Sql::QUERY_COND_METHOD_NOT_IN:
-            $cond_value      = $this->_fmtSqlCondInCondValue($col, $value, 'not in');
+            $cond_value      = $this->_fmtSqlCondInCondValue($col, $value, \YueYue\Knowledge\Sql::QUERY_COND_NOT_IN_COND);
             $result['cond']  = $cond_value['cond'];
             $result['value'] = $cond_value['value'];
+            break;
+        case \YueYue\Knowledge\Sql::QUERY_COND_METHOD_NOT_EQUAL:
+            $result['cond']  = "$col != ?";
+            $result['value'] = $value;
             break;
         default:
             $result = false;
@@ -273,7 +296,7 @@ abstract class Sql
         }
         return $result;
     }/*}}}*/
-    private function _fmtSqlCondInCondValue($col, $value, $cond='in')
+    private function _fmtSqlCondInCondValue($col, $value, $cond=\YueYue\Knowledge\Sql::QUERY_COND_IN_COND)
     {/*{{{*/
         $sql = "$col $cond (";
         $tmp = array();

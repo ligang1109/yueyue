@@ -14,7 +14,7 @@ abstract class Base
 
     public function dispatch($action_name)
     {/*{{{*/
-		$this->_action_name = $action_name;
+		$this->_action_name = strtolower($action_name);
 
 		$action_func = $this->_action_name.'Action';
         if(!method_exists($this, $action_func))

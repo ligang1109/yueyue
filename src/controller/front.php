@@ -36,12 +36,26 @@ abstract class Front extends \YueYue\Controller\Web
 
         if(!is_null($this->_view))
         {
-            $tpl_name = $this->_tpl_name ? $this->_tpl_name : $this->_controller_name.'/'.strtolower($this->_action_name);
+            $tpl_name = $this->_tpl_name ? $this->_tpl_name : $this->_controller_name.'/'.$this->_action_name;
             $this->_view->render($tpl_name);
         }
 	}/*}}}*/
-    protected function _assign($key, $value)
+    protected function _assign($key, $value, $secure_filter=true)
     {/*{{{*/
-        $this->_view->assign($key, $value);
+        $this->_view->assign($key, $value, $secure_filter);
+    }/*}}}*/
+
+    protected function _getCurUrl()
+    {/*{{{*/
+        return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    }/*}}}*/
+    protected function _getBackUrl()
+    {/*{{{*/
+        return array_key_exists('HTTP_REFERER', $_SERVER) ? $_SERVER['HTTP_REFERER'] : '';
+    }/*}}}*/
+    protected function _goBack()
+    {/*{{{*/
+        header('location:'.$this->_getBackUrl());
+        exit;
     }/*}}}*/
 }/*}}}*/

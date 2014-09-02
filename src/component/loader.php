@@ -57,4 +57,8 @@ class Loader
     {/*{{{*/
         return self::loadSingleton('\YueYue\Tool\SqlExecutor', $db_conf);
     }/*}}}*/
+    public static function loadTaskRunner()
+    {/*{{{*/
+        return self::loadSingleton('\YueYue\Task\Runner');
+    }/*}}}*/
 }/*}}}*/

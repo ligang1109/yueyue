@@ -54,6 +54,17 @@ class Yueyue
         $controller = $this->_loadController();
         $controller->dispatch($this->_action_name);
     }/*}}}*/
+    public function runTask()
+    {/*{{{*/
+        $this->_initLogger();
+
+        \YueYue\Component\Loader::loadTaskRunner()->runTask();
+    }/*}}}*/
+
+    public function addTask($task_name, $cls_name)
+    {/*{{{*/
+        \YueYue\Component\Loader::loadTaskRunner()->addTask($task_name, $cls_name);
+    }/*}}}*/
 
 
     private function _initLogger()

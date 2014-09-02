@@ -64,10 +64,11 @@ class Response
         $this->_setFmtConf(self::FMT_JSONP, $value);
     }/*}}}*/
 
-	public function secureFilter($str, $needHtmlspecialchars=true)
-	{/*{{{*/
-		return $needHtmlspecialchars ? htmlspecialchars($str) : strip_tags($str);
-	}/*}}}*/
+    public function getFmtValueDump()
+    {/*{{{*/
+        return $this->_fmt_conf_key_value[self::FMT_DUMP];
+    }/*}}}*/
+
     public function output($data=array(), $fmt_value='')
     {/*{{{*/
         $fmt_key = $this->_getFmtKey($fmt_value);
@@ -77,7 +78,6 @@ class Response
         case self::FMT_DUMP:
             echo '<pre>';
             var_dump($data);
-            echo '</pre>';
             break;
         case self::FMT_SERIALIZE:
             echo serialize($data);
@@ -148,6 +148,6 @@ class Response
             $callback = self::DEF_JSONP_CALLBACK_VALUE;
         }
 
-        return $this->secureFilter($callback);
+        return \YueYue\Tool\Toolbox::secureFilter($callback);
     }/*}}}*/
 }/*}}}*/
