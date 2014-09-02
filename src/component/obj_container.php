@@ -26,6 +26,6 @@ class ObjContainer
     }/*}}}*/
     public static function have($key)
     {/*{{{*/
-        return array_key_exists($key, self::$_objs) ? true : false;
+        return isset(self::$_objs[$key]) ? true : false;
     }/*}}}*/
 }/*}}}*/
