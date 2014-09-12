@@ -136,6 +136,10 @@ abstract class Sql
     {/*{{{*/
         return $cnt ? "$bgn, $cnt" : "";
     }/*}}}*/
+	protected function _makeFieldSql($fields)
+	{/*{{{*/
+		return empty($fields) ? '*' : implode(', ', $fields);
+	}/*}}}*/
     protected function _simpleQuery($query_key, $params, $fields=array(), $order_by='', $limit='', $cond_logic=\YueYue\Knowledge\Sql::QUERY_COND_LOGIC_AND)
     {/*{{{*/
         if(!array_key_exists($query_key, $this->_query_conf))
@@ -170,7 +174,6 @@ abstract class Sql
 
         return current($item);
     }/*}}}*/
-
 
     private function _addImp($obj)
     {/*{{{*/
@@ -317,8 +320,4 @@ abstract class Sql
             'value' => $value,
         );
     }/*}}}*/
-	private function _makeFieldSql($fields)
-	{/*{{{*/
-		return empty($fields) ? '*' : implode(', ', $fields);
-	}/*}}}*/
 }/*}}}*/
