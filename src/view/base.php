@@ -3,8 +3,7 @@ namespace YueYue\View;
 
 abstract class Base
 {/*{{{*/
-	abstract public function assign($key, $value, $secure_filter=true);
-
+	abstract protected function _assign($key, $value);
     abstract protected function _getTplPath($tpl_name);
 	abstract protected function _parseTpl($tpl_path);
 
@@ -14,6 +13,14 @@ abstract class Base
 	{/*{{{*/
 		$this->_view_root = $view_root;
 	}/*}}}*/
+	public function assign($key, $value, $secure_filter=true)
+    {/*{{{*/
+        if($secure_filter)
+        {
+            $value = \YueYue\Tool\Toolbox::secureFilter($value);
+        }
+        $this->_assign($key, $value);
+    }/*}}}*/
 	public function render($tpl_name, $data=array())
 	{/*{{{*/
         if(!empty($data))

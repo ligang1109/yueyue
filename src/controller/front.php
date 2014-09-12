@@ -23,13 +23,6 @@ abstract class Front extends \YueYue\Controller\Web
         $this->_view = null;
     }/*}}}*/
 
-	protected function _preAction()
-	{/*{{{*/
-        parent::_preAction();
-
-        $this->_assign('controller_name', $this->_controller_name);
-        $this->_assign('action_name', $this->_action_name);
-	}/*}}}*/
 	protected function _postAction()
 	{/*{{{*/
         parent::_postAction();

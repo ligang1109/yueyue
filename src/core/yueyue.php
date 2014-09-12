@@ -3,7 +3,6 @@ namespace YueYue\Core;
 
 class Yueyue
 {/*{{{*/
-    private $_subsystem            = '';
     private $_controller_namespace = '';
     private $_controller_name      = '';
     private $_action_name          = '';
@@ -11,10 +10,6 @@ class Yueyue
     private $_view_root            = '';
     private $_log_root             = '';
 
-    public function setSubsystem($subsystem)
-    {/*{{{*/
-        $this->_subsystem = $subsystem;
-    }/*}}}*/
     public function setLogRoot($log_root)
     {/*{{{*/
         $this->_log_root = $log_root;
@@ -32,11 +27,6 @@ class Yueyue
     public function setActionName($action_name)
     {/*{{{*/
         $this->_action_name = $action_name;
-    }/*}}}*/
-
-    public function getSubsystem()
-    {/*{{{*/
-        return $this->_subsystem;
     }/*}}}*/
 
     public function runFront()
