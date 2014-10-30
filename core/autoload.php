@@ -1,4 +1,12 @@
 <?php
+/**
+* @file autoload.php
+* @brief autoload for yueyue
+* @author ligang
+* @version 1.0
+* @date 2014-10-29
+ */
+
 namespace YueYue\Core;
 
 class Autoload
@@ -7,6 +15,14 @@ class Autoload
     private static $_src_root = '';
     private static $_special_paths = array();
 
+    /**
+        * @brief must called first
+        *
+        * @param $key
+        * @param $src_root
+        *
+        * @return 
+     */
     public static function init($key, $src_root)
     {/*{{{*/
         self::$_key      = $key;
@@ -14,10 +30,27 @@ class Autoload
 
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }/*}}}*/
+
+    /**
+        * @brief special path such as config
+        *
+        * @param $key
+        * @param $special_src_root
+        *
+        * @return 
+     */
     public static function setSpecialPath($key, $special_src_root)
     {/*{{{*/
         self::$_special_paths[$key] = $special_src_root;
     }/*}}}*/
+
+    /**
+        * @brief implement autoload
+        *
+        * @param $search_cls_name
+        *
+        * @return 
+     */
 	public static function autoload($search_cls_name)
 	{/*{{{*/
         $cls_name = trim($search_cls_name, '\\');
