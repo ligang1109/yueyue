@@ -18,13 +18,6 @@ class Yueyue
     private $_view_root            = '';
     private $_log_root             = '';
 
-    private $_router = null;
-
-    public function __construct()
-    {/*{{{*/
-        $this->_router = \YueYue\Component\Loader::loadRouter();
-    }/*}}}*/
-
     /**
         * @brief set log root e.g. /home/q/system/yueyue/logs
         *
@@ -85,6 +78,9 @@ class Yueyue
     public function runWeb()
     {/*{{{*/
         \YueYue\Component\Bizlog::init($this->_log_root);
+
+        $route = \YueYue\Component\Loader::loadRouter()->findRoute();
+        $route->go($this->_makeRouteExtParams());
     }/*}}}*/
 
     /**
@@ -109,5 +105,17 @@ class Yueyue
     public function addTask($task_name, $cls_name)
     {/*{{{*/
         \YueYue\Component\Loader::loadTaskRunner()->addTask($task_name, $cls_name);
+    }/*}}}*/
+
+
+    private function _makeRouteExtParams()
+    {/*{{{*/
+        return array(
+            'controller_namespace' => $this->_controller_namespace,
+            'controller_name'      => $this->_controller_name,
+            'action_name'          => $this->_controller_name,
+            'tpl_engine'           => $this->_tpl_engine,
+            'view_root'            => $this->_view_root,
+        );
     }/*}}}*/
 }/*}}}*/

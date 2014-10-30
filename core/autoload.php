@@ -79,7 +79,6 @@ class Autoload
         $cls_path.= implode('_', $name_data).'.php';
         if(!file_exists($cls_path))
         {
-            var_dump($cls_path, $search_cls_name);
             throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_SYS_CLS_NOT_EXISTS, "cls file $cls_path not exists");
         }
 

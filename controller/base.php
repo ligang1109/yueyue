@@ -12,7 +12,7 @@ abstract class Base
 		$this->_controller_name = $controller_name;
 	}/*}}}*/
 
-    public function dispatch($action_name)
+    public function dispatch($action_name, $ext_params)
     {/*{{{*/
 		$this->_action_name = strtolower($action_name);
 
