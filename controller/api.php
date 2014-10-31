@@ -1,4 +1,12 @@
 <?php
+/**
+* @file api.php
+* @brief no view, use response, extends by api app
+* @author ligang
+* @version 1.0
+* @date 2014-10-31
+ */
+
 namespace YueYue\Controller;
 
 abstract class Api extends \YueYue\Controller\Web

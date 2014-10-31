@@ -1,4 +1,12 @@
 <?php
+/**
+* @file web.php
+* @brief parse action params, extended by web app
+* @author ligang
+* @version 1.0
+* @date 2014-10-31
+ */
+
 namespace YueYue\Controller;
 
 abstract class Web extends \YueYue\Controller\Base

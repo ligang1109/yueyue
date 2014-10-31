@@ -1,4 +1,12 @@
 <?php
+/**
+* @file front.php
+* @brief have view, extended by front app
+* @author ligang
+* @version 1.0
+* @date 2014-10-31
+ */
+
 namespace YueYue\Controller;
 
 abstract class Front extends \YueYue\Controller\Web
@@ -6,23 +14,16 @@ abstract class Front extends \YueYue\Controller\Web
     protected $_view     = null;
     protected $_tpl_name = '';
 
-    public function initView($tpl_engine, $view_root)
+    protected function _preAction()
     {/*{{{*/
-        if($tpl_engine)
+        parent::_preAction();
+
+        if('' != $this->_ext_params['tpl_engine'])
         {
-            $this->_view = \YueYue\Component\Loader::loadView($tpl_engine);
-            $this->_view->setViewRoot($view_root);
+            $this->_view = \YueYue\Component\Loader::loadView($this->_ext_params['tpl_engine']);
+            $this->_view->setViewRoot($this->_ext_params['view_root']);
         }
     }/*}}}*/
-    public function setViewTpl($tpl_name)
-    {/*{{{*/
-        $this->_tpl_name = $tpl_name;
-    }/*}}}*/
-    public function setNoView()
-    {/*{{{*/
-        $this->_view = null;
-    }/*}}}*/
-
 	protected function _postAction()
 	{/*{{{*/
         parent::_postAction();
@@ -33,6 +34,15 @@ abstract class Front extends \YueYue\Controller\Web
             $this->_view->render($tpl_name);
         }
 	}/*}}}*/
+
+    protected function _setViewTpl($tpl_name)
+    {/*{{{*/
+        $this->_tpl_name = $tpl_name;
+    }/*}}}*/
+    protected function _setNoView()
+    {/*{{{*/
+        $this->_view = null;
+    }/*}}}*/
     protected function _assign($key, $value, $secure_filter=true)
     {/*{{{*/
         $this->_view->assign($key, $value, $secure_filter);

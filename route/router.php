@@ -11,7 +11,7 @@ namespace YueYue\Route;
 
 class Router
 {/*{{{*/
-    const ROUTE_GENERAL = '\YueYue\Route\General';
+    const DEF_ROUTE = '\YueYue\Route\General';
 
     private $_general_table = array();
     private $_regular_table = array();
@@ -69,7 +69,7 @@ class Router
     }/*}}}*/
     private function _getRouteConf($uri)
     {/*{{{*/
-        $route  = self::ROUTE_GENERAL;
+        $route  = self::DEF_ROUTE;
         $params = array();
         if(isset($this->_general_table[$uri]))
         {

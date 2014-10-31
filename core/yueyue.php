@@ -18,6 +18,13 @@ class Yueyue
     private $_view_root            = '';
     private $_log_root             = '';
 
+    private $_router = null;
+
+    public function __construct()
+    {/*{{{*/
+        $this->_router = \YueYue\Component\Loader::loadRouter();
+    }/*}}}*/
+
     /**
         * @brief set log root e.g. /home/q/system/yueyue/logs
         *
@@ -71,6 +78,26 @@ class Yueyue
     }/*}}}*/
 
     /**
+        * @brief call router addGeneralRoute
+        *
+        * @return 
+     */
+    public function addGeneralRoute($uri, $route, $params=array())
+    {/*{{{*/
+        $this->_router->addGeneralRoute($uri, $route, $params);
+    }/*}}}*/
+
+    /**
+        * @brief call router addRegularRoute
+        *
+        * @return 
+     */
+    public function addRegularRoute($pattern, $route, $params=array())
+    {/*{{{*/
+        $this->_router->addRegularRoute($pattern, $route, $params);
+    }/*}}}*/
+
+    /**
         * @brief run web app
         *
         * @return 
@@ -79,7 +106,7 @@ class Yueyue
     {/*{{{*/
         \YueYue\Component\Bizlog::init($this->_log_root);
 
-        $route = \YueYue\Component\Loader::loadRouter()->findRoute();
+        $route = $this->_router->findRoute();
         $route->go($this->_makeRouteExtParams());
     }/*}}}*/
 
