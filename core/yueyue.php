@@ -78,13 +78,13 @@ class Yueyue
     }/*}}}*/
 
     /**
-        * @brief call router addGeneralRoute
+        * @brief get router
         *
         * @return 
      */
-    public function addGeneralRoute($uri, $route, $params=array())
+    public function getRouter()
     {/*{{{*/
-        $this->_router->addGeneralRoute($uri, $route, $params);
+        return $this->_router;
     }/*}}}*/
 
     /**

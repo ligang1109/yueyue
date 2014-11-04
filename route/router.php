@@ -84,6 +84,7 @@ class Router
                 {
                     $route  = $item['route'];
                     $params = $item['params'];
+                    break;
                 }
             }
         }
