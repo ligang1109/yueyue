@@ -21,7 +21,7 @@ abstract class Base
         }
         $this->_assign($key, $value);
     }/*}}}*/
-	public function render($tpl_name, $data=array())
+	public function render($tpl_name, $data=array(), $echo=true)
 	{/*{{{*/
         if(!empty($data))
         {
@@ -40,9 +40,16 @@ abstract class Base
 		ob_start();
 		$this->_parseTpl($tpl_path);
 		$contents = ob_get_clean();
-
         $this->_filterContents($contents);
-        echo $contents;
+
+        if($echo)
+        {
+            echo $contents;
+        }
+        else
+        {
+            return $contents;
+        }
 	}/*}}}*/
 
     protected function _filterContents(&$contents)
