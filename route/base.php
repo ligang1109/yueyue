@@ -13,6 +13,7 @@ abstract class Base
 {/*{{{*/
     protected $_request_uri  = '';
     protected $_route_params = array();
+    protected $_request      = null;
 
     /**
         * @brief go route
@@ -27,5 +28,6 @@ abstract class Base
     {/*{{{*/
         $this->_request_uri  = $uri;
         $this->_route_params = $params;
+        $this->_request      = \YueYue\Component\Loader::loadRequest();
     }/*}}}*/
 }/*}}}*/

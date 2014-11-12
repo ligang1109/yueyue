@@ -1,4 +1,12 @@
 <?php
+/**
+* @file runner.php
+* @brief task runner
+* @author ligang
+* @version 1.0
+* @date 2014-11-11
+ */
+
 namespace YueYue\Task;
 
 class Runner
@@ -13,10 +21,25 @@ class Runner
         $this->_initCmdList();
     }/*}}}*/
 
+
+    /**
+        * @brief add task item
+        *
+        * @param $task_name
+        * @param $cls_name
+        *
+        * @return 
+     */
     public function addTask($task_name, $cls_name)
     {/*{{{*/
         $this->_task_list[$task_name] = $cls_name;
     }/*}}}*/
+
+    /**
+        * @brief run task by cmd
+        *
+        * @return 
+     */
     public function runTask()
     {/*{{{*/
         if($_SERVER['argc'] < 2)
@@ -74,7 +97,11 @@ class Runner
         }
         catch(\Exception $e)
         {
-            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_TASK_INVALID_TASK_CLS, 'invalid task_cls');
+            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_TASK_INVALID_TASK_CLS, "task $cls_name not exists");
+        }
+        if(!($task instanceof \YueYue\Task\Func))
+        {
+            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_TASK_INVALID_TASK_CLS, $cls_name.' must implement \YueYue\Task\Func');
         }
 
         $task->run($params);
