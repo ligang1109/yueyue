@@ -15,6 +15,12 @@ class Router
 
     private $_general_table = array();
     private $_regular_table = array();
+    private $_default_route = array();
+
+    public function __construct()
+    {/*{{{*/
+        $this->setDefaultRoute(self::DEF_ROUTE);
+    }/*}}}*/
 
     /**
         * @brief add general route, match uri use equal
@@ -44,6 +50,19 @@ class Router
     }/*}}}*/
 
     /**
+        * @brief add default route
+        *
+        * @return 
+     */
+    public function setDefaultRoute($route, $params=array())
+    {/*{{{*/
+        $this->_default_route = array(
+            'route'  => $route,
+            'params' => $params,
+        );
+    }/*}}}*/
+
+    /**
         * @brief find route
         *
         * @return 
@@ -69,8 +88,9 @@ class Router
     }/*}}}*/
     private function _getRouteConf($uri)
     {/*{{{*/
-        $route  = self::DEF_ROUTE;
-        $params = array();
+        $route  = $this->_default_route['route'];
+        $params = $this->_default_route['params'];
+
         if(isset($this->_general_table[$uri]))
         {
             $route  = $this->_general_table[$uri]['route'];

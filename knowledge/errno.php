@@ -13,9 +13,10 @@ class Errno
 {/*{{{*/
     const SUCCESS = 0;
 
-    const E_SYS_CLS_NOT_EXISTS     = 11;
-    const E_SYS_INVALID_ROUTE      = 12;
-    const E_SYS_INVALID_CONTROLLER = 13;
+    const E_SYS_CLS_NOT_EXISTS      = 11;
+    const E_SYS_INVALID_ROUTE       = 12;
+    const E_SYS_INVALID_CONTROLLER  = 13;
+    const E_SYS_INVALID_REQUEST_URI = 14;
 
     const E_COMPONENTS_CONTROLLER_NOT_EXISTS      = 101;
     const E_COMPONENTS_ACTION_NOT_EXISTS          = 102;
