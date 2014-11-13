@@ -67,7 +67,11 @@ class Toolbox
     }/*}}}*/
     public static function getUa()
     {/*{{{*/
-        return (isset($_SERVER['HTTP_USER_AGENT']) && $_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+        return isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+    }/*}}}*/
+    public static function getDomain()
+    {/*{{{*/
+        return isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
     }/*}}}*/
     public static function jumpTo($url)
     {/*{{{*/
