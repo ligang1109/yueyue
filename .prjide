@@ -1,62 +1,61 @@
-yueyue=$YUEYUE_HOME in=project/in.vim {
- project=project {
-  in.vim
-  srcindex_cscope.sh
-  srcindex_ctags.sh
+yueyue=$PWD {
+ component=component {
+  bizlog.php
+  exception.php
+  loader.php
+  obj_container.php
+  params_check.php
+  params_conf.php
+  request.php
+  response.php
  }
- src=src {
-  component=component {
-   exception.php
-   loader.php
-   logger.php
-   obj_container.php
-   params_check.php
-   params_conf.php
-   request.php
-   response.php
-  }
-  controller=controller {
-   base.php
-   web.php
-   front.php
-   api.php
-  }
-  core=core {
-   autoload.php
-   boot.php
-   yueyue.php
-  }
-  dao=dao {
-   sql.php
-  }
-  entity=entity {
-   base.php
-   sql.php
-  }
-  knowledge=knowledge {
-   errno.php
-   param.php
-   pdo.php
-   sql.php
-   tpl.php
-  }
-  svc=svc {
-   store.php
-  }
-  task=task {
-   func.php
-   runner.php
-  }
-  tool=tool {
-   curl.php
-   postman.php
-   sql_executor.php
-   toolbox.php
-  }
-  view=view {
-   base.php
-   php.php
-   smarty.php
-  }
+ controller=controller {
+  api.php
+  base.php
+  front.php
+  web.php
+ }
+ core=core {
+  autoload.php
+  boot.php
+  yueyue.php
+ }
+ dao=dao {
+  sql.php
+ }
+ entity=entity {
+  base.php
+  sql.php
+ }
+ knowledge=knowledge {
+  errno.php
+  param.php
+  pdo.php
+  sql.php
+  tpl.php
+ }
+ route=route {
+  base.php
+  error.php
+  general.php
+  router.php
+ }
+ svc=svc {
+  store.php
+ }
+ task=task {
+  func.php
+  runner.php
+ }
+ tool=tool {
+  curl.php
+  postman.php
+  sql_executor.php
+  toolbox.php
+ }
+ view=view {
+  base.php
+  php.php
+  smarty.php
  }
 }

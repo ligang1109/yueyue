@@ -140,7 +140,7 @@ class Yueyue
         return array(
             'controller_namespace' => $this->_controller_namespace,
             'controller_name'      => $this->_controller_name,
-            'action_name'          => $this->_controller_name,
+            'action_name'          => $this->_action_name,
             'tpl_engine'           => $this->_tpl_engine,
             'view_root'            => $this->_view_root,
         );
