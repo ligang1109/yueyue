@@ -83,9 +83,11 @@ class Response
             echo serialize($data);
             break;
         case self::FMT_JSONP:
+            header('Content-Type: application/x-javascript;charset=utf-8');
 			echo ' '.$this->_getJsonpCallback().'('.json_encode($data).');';
 			break;
         case self::FMT_JSON:
+            header('Content-Type: application/x-javascript;charset=utf-8');
         default:
             echo json_encode($data);
         }
