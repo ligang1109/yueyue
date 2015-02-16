@@ -119,13 +119,13 @@ class Bizlog
         {
             $result.= $r_path.'/';
         }
-        $result.= $key;
+        $result.= $key.'.log';
         if('' != $suffix)
         {
-            $result.= '_'.$suffix;
+            $result.= '.'.$suffix;
         }
 
-        return $result.'.log';
+        return $result;
     }/*}}}*/
     private static function _makeLineHeader($col_spr)
     {/*{{{*/

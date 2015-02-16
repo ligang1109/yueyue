@@ -48,6 +48,7 @@ yueyue=$PWD {
   runner.php
  }
  tool=tool {
+  color.php
   curl.php
   postman.php
   sql_executor.php

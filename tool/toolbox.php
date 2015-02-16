@@ -60,6 +60,10 @@ class Toolbox
     {/*{{{*/
         return $_SERVER['REMOTE_ADDR'];
     }/*}}}*/
+    public static function getPort()
+    {/*{{{*/
+        return $_SERVER['REMOTE_PORT'];
+    }/*}}}*/
     public static function getHostname()
     {/*{{{*/
         $host_data = posix_uname();
@@ -98,4 +102,44 @@ class Toolbox
 
         return $data;
 	}/*}}}*/
+
+	public static function isTextFile($file_path)
+	{/*{{{*/
+		$result = self::runShellCmd("file $file_path", true);
+		return (false === strpos($result['last_line'], 'text')) ? false : true;
+	}/*}}}*/
+	public static function getFilesFromPath($path, &$result, $filter_str='')
+	{/*{{{*/
+		if(!file_exists($path))
+		{
+			return ;
+		}
+		if(preg_match('/^\./', $path))
+		{
+			return ;
+		}
+
+		if(is_dir($path))
+		{
+			if(false !== ($dh = opendir($path)))
+			{
+				while(false !== ($file = readdir($dh)))
+				{
+					if('.' != $file && '..' != $file)
+					{
+						self::getFilesFromPath("$path/$file", $result, $filter_str);
+					}
+				}
+			}
+		}
+		else
+		{
+			$result[] = ('' == $filter_str) ? $path : str_replace($filter_str, '', $path);
+		}
+	}/*}}}*/
+    public static function getFileExtension($path)
+    {/*{{{*/
+        $info = pathinfo($path);
+        return $info['extension'];
+    }/*}}}*/
 }/*}}}*/
