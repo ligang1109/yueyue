@@ -77,6 +77,10 @@ class Toolbox
     {/*{{{*/
         return isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
     }/*}}}*/
+    public static function getQueryString()
+    {/*{{{*/
+        return isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
+    }/*}}}*/
     public static function jumpTo($url)
     {/*{{{*/
         header('location:'.$url);
