@@ -11,54 +11,54 @@ namespace YueYue\Controller;
 
 abstract class Front extends \YueYue\Controller\Web
 {/*{{{*/
-    protected $_view     = null;
-    protected $_tpl_name = '';
+    protected $view            = null;
+    protected $tpl_name        = '';
+    protected $tpl_path_prefix = '';
 
-    protected function _preAction()
+    protected function preAction()
     {/*{{{*/
-        parent::_preAction();
+        parent::preAction();
 
-        if('' != $this->_ext_params['tpl_engine'])
+        if('' != $this->ext_params['tpl_engine'])
         {
-            $this->_view = \YueYue\Component\Loader::loadView($this->_ext_params['tpl_engine']);
-            $this->_view->setViewRoot($this->_ext_params['view_root']);
+            $this->view = \YueYue\Component\Loader::loadView($this->ext_params['tpl_engine']);
+            $this->view->setViewRoot($this->ext_params['view_root']);
         }
     }/*}}}*/
-	protected function _postAction()
+	protected function postAction()
 	{/*{{{*/
-        parent::_postAction();
+        parent::postAction();
 
-        if(!is_null($this->_view))
+        if(!is_null($this->view))
         {
-            $tpl_name = $this->_tpl_name ? $this->_tpl_name : $this->_controller_name.'/'.$this->_action_name;
-            $this->_view->render($tpl_name);
+            if('' == $this->tpl_name)
+            {
+                if('' != $this->tpl_path_prefix)
+                {
+                    $this->tpl_name = $this->tpl_path_prefix.'/';
+                }
+                $this->tpl_name.= $this->controller_name.'/'.$this->action_name;
+            }
+
+            $this->view->render($this->tpl_name);
         }
 	}/*}}}*/
 
-    protected function _setViewTpl($tpl_name)
+    protected function setViewTpl($tpl_name)
     {/*{{{*/
-        $this->_tpl_name = $tpl_name;
+        $this->tpl_name = $tpl_name;
     }/*}}}*/
-    protected function _setNoView()
+    protected function setNoView()
     {/*{{{*/
-        $this->_view = null;
+        $this->view = null;
     }/*}}}*/
-    protected function _assign($key, $value, $secure_filter=true)
+    protected function assign($key, $value, $secure_filter=true)
     {/*{{{*/
-        $this->_view->assign($key, $value, $secure_filter);
+        $this->view->assign($key, $value, $secure_filter);
     }/*}}}*/
 
-    protected function _getCurUrl()
+    protected function goBack()
     {/*{{{*/
-        return 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-    }/*}}}*/
-    protected function _getBackUrl()
-    {/*{{{*/
-        return array_key_exists('HTTP_REFERER', $_SERVER) ? $_SERVER['HTTP_REFERER'] : '';
-    }/*}}}*/
-    protected function _goBack()
-    {/*{{{*/
-        header('location:'.$this->_getBackUrl());
-        exit;
+        \YueYue\Tool\Toolbox::jumpTo(\YueYue\Tool\Toolbox::getRefer());
     }/*}}}*/
 }/*}}}*/

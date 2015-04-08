@@ -81,6 +81,15 @@ class Toolbox
     {/*{{{*/
         return isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
     }/*}}}*/
+    public static function getRefer()
+    {/*{{{*/
+        return isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+    }/*}}}*/
+    public static function getRequestUri()
+    {/*{{{*/
+        return $_SERVER['REQUEST_URI'];
+    }/*}}}*/
+
     public static function jumpTo($url)
     {/*{{{*/
         header('location:'.$url);
@@ -145,5 +154,14 @@ class Toolbox
     {/*{{{*/
         $info = pathinfo($path);
         return $info['extension'];
+    }/*}}}*/
+
+    public static function setCssHeader()
+    {/*{{{*/
+        header('Content-Type:text/css; charset=utf-8');
+    }/*}}}*/
+    public static function setJsHeader()
+    {/*{{{*/
+        header('Content-Type:application/x-javascript; charset=utf-8');
     }/*}}}*/
 }/*}}}*/

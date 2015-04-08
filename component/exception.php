@@ -3,7 +3,7 @@ namespace YueYue\Component;
 
 class Exception extends \Exception
 {/*{{{*/
-	private $_ext = null;
+	protected $_ext = null;
 
     public function __construct($errno, $msg='', $ext=null)
     {/*{{{*/

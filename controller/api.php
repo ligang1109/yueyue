@@ -11,21 +11,21 @@ namespace YueYue\Controller;
 
 abstract class Api extends \YueYue\Controller\Web
 {/*{{{*/
-    protected $_response = null;
-    protected $_result   = array();
-    protected $_fmt      = '';
+    protected $response = null;
+    protected $result   = array();
+    protected $fmt      = '';
 
 	public function __construct($controller_name)
 	{/*{{{*/
         parent::__construct($controller_name);
 
-        $this->_response = \YueYue\Component\Loader::loadResponse();
+        $this->response = \YueYue\Component\Loader::loadResponse();
 	}/*}}}*/
 
-	protected function _postAction()
+	protected function postAction()
 	{/*{{{*/
-        parent::_postAction();
+        parent::postAction();
 
-        $this->_response->output($this->_result, $this->_fmt);
+        $this->response->output($this->result, $this->fmt);
 	}/*}}}*/
 }/*}}}*/

@@ -11,14 +11,14 @@ namespace YueYue\Controller;
 
 abstract class Base
 {/*{{{*/
-	protected $_controller_name = '';
-	protected $_action_name 	= '';
-    protected $_action_params   = array();
-    protected $_ext_params      = array();
+	protected $controller_name = '';
+	protected $action_name 	   = '';
+    protected $action_params   = array();
+    protected $ext_params      = array();
 
 	public function __construct($controller_name)
 	{/*{{{*/
-		$this->_controller_name = $controller_name;
+		$this->controller_name = $controller_name;
 	}/*}}}*/
 
     /**
@@ -31,24 +31,24 @@ abstract class Base
      */
     public function dispatch($action_name, $ext_params=array())
     {/*{{{*/
-        $this->_ext_params  = $ext_params;
-		$this->_action_name = strtolower($action_name);
+        $this->ext_params  = $ext_params;
+		$this->action_name = strtolower($action_name);
 
-		$action_func = $this->_action_name.'Action';
+		$action_func = $this->action_name.'Action';
         if(!method_exists($this, $action_func))
         {
-            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_COMPONENTS_ACTION_NOT_EXISTS, "action $this->_action_name not exists");
+            throw new \YueYue\Component\Exception(\YueYue\Knowledge\Errno::E_COMPONENTS_ACTION_NOT_EXISTS, "action $this->action_name not exists");
         }
 
-        $this->_preAction();
+        $this->preAction();
 		$this->$action_func();
-        $this->_postAction();
+        $this->postAction();
     }/*}}}*/
 
-	protected function _preAction()
+	protected function preAction()
 	{/*{{{*/
 	}/*}}}*/
-	protected function _postAction()
+	protected function postAction()
 	{/*{{{*/
 	}/*}}}*/
 }/*}}}*/
